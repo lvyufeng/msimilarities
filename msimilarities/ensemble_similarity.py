@@ -11,9 +11,9 @@ from typing import List, Union, Dict
 
 import mindspore
 
-from similarities.bert_similarity import BertSimilarity
-from similarities.literal_similarity import BM25Similarity
-from similarities.similarity import SimilarityABC
+from msimilarities.bert_similarity import BertSimilarity
+from msimilarities.literal_similarity import BM25Similarity
+from msimilarities.similarity import SimilarityABC
 
 pwd_path = os.path.abspath(os.path.dirname(__file__))
 

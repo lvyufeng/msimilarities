@@ -19,11 +19,11 @@ import numpy as np
 from loguru import logger
 from tqdm import tqdm
 
-from similarities.similarity import SimilarityABC
-from similarities.utils.distance import string_hash, hamming_distance, longest_match_size
-from similarities.utils.rank_bm25 import BM25Okapi
-from similarities.utils.tfidf import TFIDF, load_stopwords, default_stopwords_file
-from similarities.utils.util import cos_sim, semantic_search
+from msimilarities.similarity import SimilarityABC
+from msimilarities.utils.distance import string_hash, hamming_distance, longest_match_size
+from msimilarities.utils.rank_bm25 import BM25Okapi
+from msimilarities.utils.tfidf import TFIDF, load_stopwords, default_stopwords_file
+from msimilarities.utils.util import cos_sim, semantic_search
 
 pwd_path = os.path.abspath(os.path.dirname(__file__))
 

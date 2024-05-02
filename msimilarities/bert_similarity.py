@@ -14,10 +14,10 @@ from typing import List, Union, Dict
 
 import numpy as np
 from loguru import logger
-from text2vec import SentenceModel
+from ms2vec import SentenceModel
 
-from similarities.similarity import SimilarityABC
-from similarities.utils.util import cos_sim, semantic_search, dot_score
+from msimilarities.similarity import SimilarityABC
+from msimilarities.utils.util import cos_sim, semantic_search, dot_score
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 os.environ["TOKENIZERS_PARALLELISM"] = "TRUE"
@@ -36,7 +36,6 @@ class BertSimilarity(SimilarityABC):
             self,
             corpus: Union[List[str], Dict[int, str]] = None,
             model_name_or_path: str = "shibing624/text2vec-base-chinese",
-            device: str = None,
     ):
         """
         Initialize the similarity object.
@@ -45,12 +44,10 @@ class BertSimilarity(SimilarityABC):
              'shibing624/text2vec-base-chinese', ...
             model in HuggingFace Model Hub and release from https://github.com/shibing624/text2vec
         :param corpus: Corpus of documents to use for similarity queries.
-        :param device: Device (like 'cuda' / 'cpu') to use for the computation.
         """
         if isinstance(model_name_or_path, str):
             self.sentence_model = SentenceModel(
                 model_name_or_path,
-                device=device
             )
         elif hasattr(model_name_or_path, "encode"):
             self.sentence_model = model_name_or_path
@@ -126,7 +123,6 @@ class BertSimilarity(SimilarityABC):
             show_progress_bar: bool = False,
             convert_to_numpy: bool = True,
             convert_to_tensor: bool = False,
-            device: str = None,
             normalize_embeddings: bool = True,
     ):
         """Returns the embeddings for a batch of sentences."""
@@ -136,7 +132,6 @@ class BertSimilarity(SimilarityABC):
             show_progress_bar=show_progress_bar,
             convert_to_numpy=convert_to_numpy,
             convert_to_tensor=convert_to_tensor,
-            device=device,
             normalize_embeddings=normalize_embeddings,
         )
 
